@@ -31,6 +31,6 @@ def part_two(data):
 
 	
 
-data = parse_file('data/day1.txt')
+data = parse_file('../data/day1.txt')
 print(part_one(data))
 print(part_two(data))

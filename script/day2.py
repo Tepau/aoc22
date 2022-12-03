@@ -73,12 +73,11 @@ def part_two(data):
             else:
                 r_v.append((adv, 'X'))
         
-    print('r_v', r_v)
     return part_one(r_v)
 
 
 
-x = parse_file('data/day2.txt')
+x = parse_file('../data/day2.txt')
 
 print('Part one : ',part_one(x))
 print('Part two : ',part_two(x))
