@@ -14,7 +14,7 @@ VALUES = {
 
 SCORES = {'win': 6, 'draw': 3, 'lost': 0}
 
-# 1 beats 3 and loses 2, 1 beats 3 and loses 3, 3 beats 2 and loses 1
+# 1 beats 3 and loses 2, 2 beats 1 and loses 3, 3 beats 2 and loses 1
 WIN_LOST = {
     1:(3,2), 2:(1,3), 3:(2,1)
 }
@@ -49,8 +49,6 @@ def part_two(data):
         
         
     return part_one(r_v)
-
-
 
 x = parse_file('../data/day2.txt')
 
