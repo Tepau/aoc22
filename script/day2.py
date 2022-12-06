@@ -12,13 +12,12 @@ VALUES = {
     'Z': 3, #Scissors
 }
 
-TEST = {
-    1: ('A', 'X'), #Rock
-    2: ('B', 'Y'), #Paper
-    3: ('C', 'Z'), #Scissors
-}
-
 SCORES = {'win': 6, 'draw': 3, 'lost': 0}
+
+# 1 beats 3 and loses 2, 1 beats 3 and loses 3, 3 beats 2 and loses 1
+WIN_LOST = {
+    1:(3,2), 2:(1,3), 3:(2,1)
+}
 
 def part_one(data):
     r_v = 0
@@ -27,51 +26,27 @@ def part_one(data):
         r_v += VALUES[me]
         if VALUES[adv] == VALUES[me]:
             r_v += SCORES['draw']
-        elif VALUES[adv] < VALUES[me]:
-            if VALUES[adv] == 1:
-                if VALUES[me] == 2:
-                    r_v += SCORES['win']
-                else:
-                    r_v += SCORES['lost']
-            else:
-                r_v += SCORES['win']
         else:
-            if VALUES[adv] == 3:
-                if VALUES[me] == 2:
-                    r_v += SCORES['lost']
-                else:
-                    r_v += SCORES['win']
+            if WIN_LOST[VALUES[adv]][0] != VALUES[me]:
+                 r_v += SCORES['win']
             else:
-                r_v += SCORES['lost']
-
+                 r_v += SCORES['lost']
     return r_v
 
 
 def part_two(data):
-    coresp = {
-        'X': 'lost',
-        'Y': 'draft',
-        'Z': 'win'
-    }
     r_v = []
     for d in data:
         adv, expected = d
-        if coresp[expected] == 'draft':
+        if expected == 'Y':
             r_v.append((adv, adv))
-        elif coresp[expected] == 'lost':
-            if VALUES[adv] == 1:
-                r_v.append((adv, 'Z'))
-            elif VALUES[adv] == 2:
-                r_v.append((adv, 'X'))
-            else:
-                r_v.append((adv, 'Y'))
+        elif expected == 'X':
+            keys = [k for k, v in VALUES.items() if v == WIN_LOST[VALUES[adv]][0]]
+            r_v.append((adv, keys[1]))
         else:
-            if VALUES[adv] == 1:
-                r_v.append((adv, 'Y'))
-            elif VALUES[adv] == 2:
-                r_v.append((adv, 'Z'))
-            else:
-                r_v.append((adv, 'X'))
+            keys = [k for k, v in VALUES.items() if v == WIN_LOST[VALUES[adv]][1]]
+            r_v.append((adv, keys[1]))
+        
         
     return part_one(r_v)
 
