@@ -14,4 +14,4 @@ def resolution(data, nb):
 x = parse_file('../data/day6.txt')
 
 print('Part one : ', resolution(x,4))
-print('Part one : ', resolution(x,14))
+print('Part two : ', resolution(x,14))
